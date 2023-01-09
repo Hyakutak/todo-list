@@ -1,0 +1,9 @@
+.header {
+    background: var(--gray-700);
+    display: flex;
+    justify-content: center;
+}
+
+.logoHeader {
+    margin: 4.5rem auto 5rem;
+}
