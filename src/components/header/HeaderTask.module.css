@@ -1,0 +1,49 @@
+.headerTasks {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.allTasks {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.allTasksText {
+    color: var(--blue);
+    font-weight: 700;
+    font-size: 0.875rem;
+    line-height: 1.05875rem;    
+}
+
+.allTasksCounter {
+    background: var(--gray-400);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0.125rem 0.5rem;
+    gap: 0.625rem;
+    border-radius: 999px;
+}
+
+.allTasksCounterText {
+    font-weight: 700;
+    font-size: 0.75rem;
+    line-height: 0.9075rem;
+}
+
+.countTasksDone {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.countTasksDoneText {
+    color: var(--purple);
+    font-weight: 700;
+    font-size: 0.875rem;
+    line-height: 1.05875rem;
+}
