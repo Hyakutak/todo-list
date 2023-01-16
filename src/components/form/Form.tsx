@@ -2,38 +2,30 @@ import { PlusCircle } from 'phosphor-react';
 import { ChangeEvent, FormEvent, useState } from 'react';
 import style from './Form.module.css';
 
-interface ITask {
-    tasks: {
-        isDone: boolean,
-        taskText: string
-    }
+interface ITextTask {
+    taskText: string
 }
 
-export function Form({ newCreateTask }) {
-    const [task, setTask] = useState<ITask>({
-        tasks: {
-            isDone: false,
-            taskText: ''
-        }
-    });
+interface IProps {
+    newCreateTask: Function
+}
+
+export function Form({ newCreateTask }: IProps) {
+    const [task, setTask] = useState<ITextTask>({taskText: 'Adicione uma nova tarefa'});
 
     function handleChangeInput(event: ChangeEvent<HTMLInputElement>) {
-        setTask({
-            tasks: {
-                isDone: false,
-                taskText: event.target.value
-            }
-        });
+        setTask({taskText: event.target.value});
     }
 
     function handleCreateTask(event: FormEvent) {
         event.preventDefault();
-        newCreateTask(task);
+        newCreateTask(task.taskText);
+        setTask({taskText: ''});
     }
 
     return (
         <div className={style.formAddTask}>
-            <input onChange={handleChangeInput} type="text" name="" id="task" className={style.inputForm} placeholder="Adicione uma nova tarefa" />
+            <input onChange={handleChangeInput} type="text" name="" id="task" className={style.inputForm} placeholder="Adicione uma nova tarefa" value={task.taskText} />
             <button onClick={handleCreateTask} className={style.buttonForm}>
                 Criar
                 <PlusCircle size={16} />

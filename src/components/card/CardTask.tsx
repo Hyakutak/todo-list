@@ -2,17 +2,33 @@ import { Check } from "phosphor-react";
 import Trash from "../../assets/trash.svg"
 import styles from "./CardTask.module.css";
 
-export function CardTask({ doneTask, textTask }) {
+interface ICard {
+    doneTask: boolean,
+    textTask: string,
+    idTask: string,
+    changeIsDone: Function,
+    deleteTaskCard: Function
+}
+
+export function CardTask({ doneTask, textTask, idTask, changeIsDone, deleteTaskCard }: ICard) {
     let checkBox;
     let text;
     if(doneTask) {
-        checkBox = <label className={styles.checkChecked}>
+        checkBox = <label onClick={handleClickIsDoneTask} className={styles.checkChecked}>
             <Check className={styles.iconChecked} size={14}/>
         </label>;
         text = <span className={styles.textCardChecked}>{ textTask }</span>;
     } else {
-        checkBox = <label className={styles.checkEmpty} />;
+        checkBox = <label onClick={handleClickIsDoneTask} className={styles.checkEmpty} />;
         text = <span className={styles.textCardEmpty}>{ textTask }</span>;
+    }
+
+    function handleClickIsDoneTask() {
+        changeIsDone(idTask, doneTask);
+    }
+
+    function hancleClickDeleteTask() {
+        deleteTaskCard(idTask);
     }
 
     return (
@@ -21,7 +37,7 @@ export function CardTask({ doneTask, textTask }) {
                 {checkBox}
             </div>
             {text}
-            <img src={Trash} alt="Excluir tarefa" />
+            <img onClick={hancleClickDeleteTask} src={Trash} alt="Excluir tarefa" />
         </div>
     );
 }
