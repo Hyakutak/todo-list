@@ -14,7 +14,6 @@ export function HeaderTask() {
                 <div className={styles.allTasksCounter}>
                     <span className={styles.allTasksCounterText}>0</span>
                 </div>
-                
             </div>
         </main>
     );
