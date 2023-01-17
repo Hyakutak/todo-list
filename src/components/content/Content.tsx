@@ -14,6 +14,9 @@ interface ITask {
 
 export function Content() {
     const [listTask, setListTask] = useState<ITask[]>([]);
+    const totalIsDone = listTask.reduce<number>(
+        (value: number, currentIndex: ITask) => currentIndex.isDone ? ++value : value, 0
+    );
 
     function createTask(newTextTask:string) {
         let newTask:ITask = {
@@ -42,13 +45,13 @@ export function Content() {
 
     const tasks = listTask.map(task => (
         <CardTask key={task.id} doneTask={task.isDone} textTask={task.taskText}  idTask={task.id} changeIsDone={changeIsTask} deleteTaskCard={deleteTask} />
-    ))
+    ));
 
     return (
         <div className={style.content}>
             <Form newCreateTask={createTask} />
             <main className={style.mainTask}>
-                <HeaderTask totalTasks={listTask.length} />
+                <HeaderTask totalTasks={listTask.length} isDoneTask={totalIsDone} />
                 {listTask.length <= 0 ? <ContentEmpty /> : tasks}
             </main>
         </div>

@@ -1,10 +1,11 @@
 import styles from './HeaderTask.module.css';
 
 interface IProps {
-    totalTasks: number
+    totalTasks: number,
+    isDoneTask: number
 }
 
-export function HeaderTask({totalTasks}: IProps) {
+export function HeaderTask({totalTasks, isDoneTask}: IProps) {
     return (
         <main className={styles.headerTasks}>
             <div className={styles.allTasks}>
@@ -16,7 +17,7 @@ export function HeaderTask({totalTasks}: IProps) {
             <div className={styles.countTasksDone}>
                 <span className={styles.countTasksDoneText}>Concluídas</span>
                 <div className={styles.allTasksCounter}>
-                    <span className={styles.allTasksCounterText}>0</span>
+                    <span className={styles.allTasksCounterText}>{isDoneTask} de {totalTasks}</span>
                 </div>
             </div>
         </main>
