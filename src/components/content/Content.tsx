@@ -14,6 +14,7 @@ interface ITask {
 
 export function Content() {
     const [listTask, setListTask] = useState<ITask[]>([]);
+    const isTaskEmpty = listTask.length <= 0;
     const totalIsDone = listTask.reduce<number>(
         (value: number, currentIndex: ITask) => currentIndex.isDone ? ++value : value, 0
     );
@@ -24,18 +25,15 @@ export function Content() {
             taskText: newTextTask,
             id: uuidv4()
         }
-        setListTask([...listTask, newTask])
+        setListTask((oldState) => [...oldState, newTask]);
     }
 
     function changeIsTask(id:string, done:boolean) {
-        setListTask((tasks) => {          
-            return [...tasks.map(task => {
-                if (task.id === id) {
-                    return {...task, isDone: !done};
-                }
-                return task;
-            })];
+        const newTaskList = listTask.map(task => {
+            if (task.id === id) return {...task, isDone: !done};
+            return task;
         });
+        setListTask(newTaskList);
     }
 
     function deleteTask(id:string) {
@@ -52,7 +50,7 @@ export function Content() {
             <Form newCreateTask={createTask} />
             <main className={style.mainTask}>
                 <HeaderTask totalTasks={listTask.length} isDoneTask={totalIsDone} />
-                {listTask.length <= 0 ? <ContentEmpty /> : tasks}
+                {isTaskEmpty ? <ContentEmpty /> : tasks}
             </main>
         </div>
     );
