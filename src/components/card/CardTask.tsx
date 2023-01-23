@@ -11,18 +11,6 @@ interface ICard {
 }
 
 export function CardTask({ doneTask, textTask, idTask, changeIsDone, deleteTaskCard }: ICard) {
-    let checkBox;
-    let text;
-    if(doneTask) {
-        checkBox = <label onClick={handleClickIsDoneTask} className={styles.checkChecked}>
-            <Check className={styles.iconChecked} size={14}/>
-        </label>;
-        text = <span className={styles.textCardChecked}>{ textTask }</span>;
-    } else {
-        checkBox = <label onClick={handleClickIsDoneTask} className={styles.checkEmpty} />;
-        text = <span className={styles.textCardEmpty}>{ textTask }</span>;
-    }
-
     function handleClickIsDoneTask() {
         changeIsDone(idTask, doneTask);
     }
@@ -34,9 +22,11 @@ export function CardTask({ doneTask, textTask, idTask, changeIsDone, deleteTaskC
     return (
         <div className={styles.card}>
             <div className={styles.contentCheckbox}>
-                {checkBox}
+                <label onClick={handleClickIsDoneTask} className={doneTask ? styles.checkChecked : styles.checkEmpty}>
+                    {doneTask && <Check className={styles.iconChecked} size={14}/>}
+                </label>
             </div>
-            {text}
+            <span className={doneTask ? styles.textCardChecked : styles.textCardEmpty}>{ textTask }</span>
             <img onClick={hancleClickDeleteTask} src={Trash} alt="Excluir tarefa" />
         </div>
     );
