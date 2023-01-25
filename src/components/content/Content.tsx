@@ -46,12 +46,12 @@ export function Content() {
     ));
 
     return (
-        <div className={style.content}>
+        <main className={style.content}>
             <Form newCreateTask={createTask} />
             <main className={style.mainTask}>
                 <HeaderTask totalTasks={listTask.length} isDoneTask={totalIsDone} />
                 {isTaskEmpty ? <ContentEmpty /> : tasks}
             </main>
-        </div>
+        </main>
     );
 }
