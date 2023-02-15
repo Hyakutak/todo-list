@@ -44,6 +44,10 @@ h2, h3 {
     color: var(--gray-300);
 }
 
+label, button {
+    cursor: pointer;
+}
+
 @media screen and (max-width: 768px) {
     html {
         font-size: 87.5%;

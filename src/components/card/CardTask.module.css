@@ -14,7 +14,6 @@
 .contentCheckbox {
     width: 1.5rem;
     height: 1.5rem;
-    display: block;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -55,4 +54,10 @@
     line-height: 1.225rem;
     text-decoration-line: line-through;
     width: calc(100% - 3rem);
+}
+
+.buttonDeletdTask {
+    background: transparent;
+    box-shadow: none;
+    border: 0;
 }

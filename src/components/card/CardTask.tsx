@@ -1,5 +1,4 @@
-import { Check } from "phosphor-react";
-import Trash from "../../assets/trash.svg"
+import { Check, Trash } from "phosphor-react";
 import styles from "./CardTask.module.css";
 
 interface ICard {
@@ -27,7 +26,9 @@ export function CardTask({ doneTask, textTask, idTask, changeIsDone, deleteTaskC
                 </label>
             </div>
             <span className={doneTask ? styles.textCardChecked : styles.textCardEmpty}>{ textTask }</span>
-            <img onClick={hancleClickDeleteTask} src={Trash} alt="Excluir tarefa" />
+            <button onClick={hancleClickDeleteTask} className={styles.buttonDeletdTask}>
+                <Trash size={20} />
+            </button>
         </div>
     );
 }
