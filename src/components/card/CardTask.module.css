@@ -22,8 +22,28 @@
 .checkEmpty {
     width: 1.090625rem;
     height: 1.090625rem;
-    border: 1px solid var(--blue);
     border-radius: 50px;
+    position: relative;
+    border: 1px solid var(--blue);
+}
+
+.checkEmpty:hover {
+    border-color: var(--blue-dark);
+}
+
+.checkEmpty::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50px;
+}
+
+.checkEmpty:hover::before {
+    background: var(--blue-dark);
+    opacity: 0.2;
 }
 
 .checkChecked {
@@ -35,6 +55,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.checkChecked:hover {
+    background: var(--purple);
 }
 
 .iconChecked {
@@ -60,4 +84,22 @@
     background: transparent;
     box-shadow: none;
     border: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.buttonDeletdTask:hover {
+    border-radius: 4px;
+    background: var(--gray-400);
+}
+
+.buttonDeletdTask svg {
+    color: var(--gray-300);
+    
+    height: 0.875rem;
+    width: 0.78rem;
+}
+
+.buttonDeletdTask:hover svg {
+    color: var(--danger);
 }
