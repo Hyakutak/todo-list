@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Form } from "../form/Form";
 import { HeaderTask } from '../header/HeaderTask';
 import { ContentEmpty } from "./ContentEmpty";
@@ -13,7 +13,18 @@ interface ITask {
 }
 
 export function Content() {
-    const [listTask, setListTask] = useState<ITask[]>([]);
+    const TasksLocalStorage = localStorage.getItem('@todo-list:tasks-state-1.0.0');
+    const initialTasks = TasksLocalStorage != null ? JSON.parse(TasksLocalStorage) : '[]';
+    const [listTask, setListTask] = useState<ITask[]>(initialTasks);
+
+    useEffect(() => {
+        const stateJSON = JSON.stringify(listTask);
+
+        localStorage.setItem('@todo-list:tasks-state-1.0.0', stateJSON);
+    }, [listTask]);
+
+    
+
     const isTaskEmpty = listTask.length <= 0;
     const totalIsDone = listTask.reduce<number>(
         (value: number, currentIndex: ITask) => currentIndex.isDone ? ++value : value, 0
@@ -48,10 +59,10 @@ export function Content() {
     return (
         <main className={style.content}>
             <Form newCreateTask={createTask} />
-            <main className={style.mainTask}>
+            <article className={style.mainTask}>
                 <HeaderTask totalTasks={listTask.length} isDoneTask={totalIsDone} />
                 {isTaskEmpty ? <ContentEmpty /> : tasks}
-            </main>
+            </article>
         </main>
     );
 }
