@@ -14,7 +14,7 @@ interface ITask {
 
 export function Content() {
     const TasksLocalStorage = localStorage.getItem('@todo-list:tasks-state-1.0.0');
-    const initialTasks = TasksLocalStorage != null ? JSON.parse(TasksLocalStorage) : '[]';
+    const initialTasks = TasksLocalStorage != null ? JSON.parse(TasksLocalStorage) : [];
     const [listTask, setListTask] = useState<ITask[]>(initialTasks);
 
     useEffect(() => {
@@ -22,8 +22,6 @@ export function Content() {
 
         localStorage.setItem('@todo-list:tasks-state-1.0.0', stateJSON);
     }, [listTask]);
-
-    
 
     const isTaskEmpty = listTask.length <= 0;
     const totalIsDone = listTask.reduce<number>(
